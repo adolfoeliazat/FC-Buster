@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour {
-    /// Keeps track of when the shot was fired for auto cleanup.
-    float StartTime;
-
     /// Tracks max lifetime of the projectile
     public float MaxLifetime = 3;
     protected bool firstContact = false;
@@ -13,7 +10,6 @@ public class Projectile : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        StartTime = Time.time;
         Debug.Log("New projectile");
     }
 	

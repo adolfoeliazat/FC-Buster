@@ -37,12 +37,15 @@ public class ShootProjectile : MonoBehaviour {
     }
     void OnSelect()
     {
-        Debug.Log("OnSelect");
-        Vector3 projectilePosition = Camera.main.transform.position + Camera.main.transform.forward * 0.45f;
+        if (PlayerManager.Instance().CanShoot())
+        {
+            Vector3 projectilePosition = Camera.main.transform.position + Camera.main.transform.forward * 0.45f;
 
-        Vector3 projectileDirection = Camera.main.transform.forward;
+            Vector3 projectileDirection = Camera.main.transform.forward;
 
-        Shoot(projectilePosition, projectileDirection);
+            Shoot(projectilePosition, projectileDirection);
+        }
+        
     }
 
     void Shoot(Vector3 start, Vector3 direction)
@@ -58,7 +61,7 @@ public class ShootProjectile : MonoBehaviour {
         Rigidbody rigidBody = spawnedProjectile.GetComponent<Rigidbody>();
 
         // apply force to the projectile          
-        rigidBody.velocity = 20 * direction;
+        rigidBody.velocity = 4 * direction;
 
         // make the projectile spin
         rigidBody.angularVelocity = Random.onUnitSphere * forceMultiplier;
